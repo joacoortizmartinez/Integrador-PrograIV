@@ -3,6 +3,8 @@ const listaLibros = document.getElementById("lista-libros");
 const formularioAgregar = document.getElementById("form-agregar-libro");
 const genero = document.getElementById("genero-buscar");
 const buscador = document.getElementById("titulo-buscar");
+const buscadorFavs = document.getElementById("ver-favs");
+
 let ultimoId = 0;
 
 function crearTarjeta(libro){
@@ -13,7 +15,7 @@ function crearTarjeta(libro){
                 <p> Genero: ${libro.genero}</p>
                 <p> Año: ${libro.anio}</p>
                 <label for="favorito"> Marcar como fav </label>
-                <input type="checkbox" class="checkbox-favorito" data-id="${libro.id}">
+                <input type="checkbox" class="checkbox-favorito" data-id="${libro.id}" ${libro.favorito ? "checked" : ""}>
             </article>
             `;
 } 
@@ -34,8 +36,6 @@ function cargarGeneros(libros){
 
     libros.forEach(function(libro){
         generos.add(libro.genero);
-        
-        
     });
 
     generos.forEach(function(g){
@@ -73,16 +73,7 @@ formularioAgregar.addEventListener("submit", function(evento){
     formularioAgregar.reset();
 });
 
-buscador.addEventListener("input", function(evento){
-    const textoBuscado = document.getElementById("titulo-buscar").value.toLowerCase();
 
-    const librosFiltrados = libros.filter(function(libro){
-        return libro.titulo.toLowerCase().includes(textoBuscado)
-            || libro.autor.toLowerCase().includes(textoBuscado);
-    });
-
-    mostrarLibros(librosFiltrados);
-});
 
 
 listaLibros.addEventListener("change", function(evento) {
@@ -109,3 +100,75 @@ listaLibros.addEventListener("change", function(evento) {
         localStorage.setItem("libros", JSON.stringify(libros));
     }
 });
+
+
+//FILTROS JUNTOS
+function aplicarTodosLosFiltros(){
+    const textoBuscado = document.getElementById("titulo-buscar").value.toLowerCase();
+    const generoABuscar = genero.value;
+    const verSoloFavoritos = buscadorFavs.checked;
+
+    const librosFiltrados = libros.filter(function (libro){
+        const coincideTexto =
+        libro.titulo.toLowerCase().includes(textoBuscado);
+
+    const coincideGenero =
+        generoABuscar === "Todos"
+        || libro.genero === generoABuscar;
+
+    const coincideFavorito =
+        !verSoloFavoritos
+        || libro.favorito;
+
+    return coincideTexto && coincideGenero && coincideFavorito;
+    })
+
+    mostrarLibros(librosFiltrados);
+};
+
+buscador.addEventListener("input", aplicarTodosLosFiltros);
+
+buscadorFavs.addEventListener("change", aplicarTodosLosFiltros);
+
+genero.addEventListener("change", aplicarTodosLosFiltros);
+//FILTRADOS INDIVIDUALES
+/*
+buscador.addEventListener("input", function(evento){
+    const textoBuscado = document.getElementById("titulo-buscar").value.toLowerCase();
+
+    const librosFiltrados = libros.filter(function(libro){
+        return libro.titulo.toLowerCase().includes(textoBuscado)
+            || libro.autor.toLowerCase().includes(textoBuscado);
+    });
+
+    mostrarLibros(librosFiltrados);
+});
+
+
+buscadorFavs.addEventListener("change", function(evento){
+    if(evento.target.checked){
+        const librosFiltrados = libros.filter(function(libro){
+            return libro.favorito === true;
+        });
+
+        mostrarLibros(librosFiltrados);
+    }
+    else{
+        mostrarLibros(libros);
+    }
+});
+
+genero.addEventListener("change", function(evento){
+    const generoABuscar = genero.value;
+
+    if (generoABuscar != "Todos") {
+        const librosBuscar = libros.filter(function(libro){
+            return libro.genero === generoABuscar;
+        });
+
+        mostrarLibros(librosBuscar);
+    }
+    else{
+        mostrarLibros(libros);
+    }
+})*/
