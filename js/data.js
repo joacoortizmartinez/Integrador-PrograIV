@@ -5,7 +5,8 @@ const librosIniciales = [
     "autor": "Gonzalo Pity Martinez",
     "genero": "Terror",
     "disponible": true,
-    "anio": 2018
+    "anio": 2018,
+    "favorito": false
   },
   {
     "id": 2,
@@ -13,7 +14,8 @@ const librosIniciales = [
     "autor": "Jack",
     "genero": "Arte",
     "disponible": true,
-    "anio": 2009
+    "anio": 2009,
+    "favorito": false
   },
   {
     "id": 3,
@@ -21,7 +23,8 @@ const librosIniciales = [
     "autor": "Pedro",
     "genero": "Terror",
     "disponible": true,
-    "anio": 2024
+    "anio": 2024,
+    "favorito": false
   },
   {
     "id": 4,
@@ -29,7 +32,8 @@ const librosIniciales = [
     "autor": "Momo",
     "genero": "Arte",
     "disponible": true,
-    "anio": 2006
+    "anio": 2006,
+    "favorito": false
   }
 ]
 

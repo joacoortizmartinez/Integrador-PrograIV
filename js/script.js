@@ -13,7 +13,7 @@ function crearTarjeta(libro){
                 <p> Genero: ${libro.genero}</p>
                 <p> Año: ${libro.anio}</p>
                 <label for="favorito"> Marcar como fav </label>
-                <input type="checkbox" class="checkbox-favorito">
+                <input type="checkbox" class="checkbox-favorito" data-id="${libro.id}">
             </article>
             `;
 } 
@@ -34,6 +34,8 @@ function cargarGeneros(libros){
 
     libros.forEach(function(libro){
         generos.add(libro.genero);
+        
+        
     });
 
     generos.forEach(function(g){
@@ -59,7 +61,8 @@ formularioAgregar.addEventListener("submit", function(evento){
         "autor": autor, 
         "genero": genero, 
         "anio": anio, 
-        "disponible": true
+        "disponible": true,
+        "favorito": false
     };
     libros.push(libroNuevo);
 
@@ -85,12 +88,24 @@ buscador.addEventListener("input", function(evento){
 listaLibros.addEventListener("change", function(evento) {
     if (evento.target.classList.contains("checkbox-favorito")) {
         
+        const id = Number(evento.target.dataset.id);
+
+        const libro = libros.find(function(libro) {
+            return libro.id === id;
+        });
+
+        
+
         const tarjeta = evento.target.parentElement;
 
         if (evento.target.checked) {
+            libro.favorito = true;
             tarjeta.classList.add("fav");
         } else {
+            libro.favorito = false;
             tarjeta.classList.remove("fav");
         }
+
+        localStorage.setItem("libros", JSON.stringify(libros));
     }
 });
