@@ -4,17 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title> Integrador </title>
-    <link rel="stylesheet" href="../integrador/css/style.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
     <header>
-        <h1>Bibloteca de Joaco</h1>
+        <h1>Biblioteca de Joaco</h1>
     </header>
 
     <main>
         <section id="agregar-libro">
             <h2>Agregar libro</h2>
-            <form action="">
+            <form id="form-agregar-libro">
                 <div>
                     <label for="titulo"> Titulo </label>
                     <input type="text" name="titulo" id="titulo" required>
@@ -42,7 +42,10 @@
         
 
         <section id="catalogo"> 
-            <h2>catalogo</h2>
+            <h2>CATALOGO</h2>
+            <div id="lista-libros">
+
+            </div>
         </section>
 
         <section id="filtrar">
@@ -54,10 +57,15 @@
 
             <div>
                 <label for="genero-buscar"> Genero </label>
-                <select name="genero-buscar" id="genero-buscar"> </select>
+                <select name="genero-buscar" id="genero-buscar"> 
+                    <option value="">Todos</option>
+                </select>
+                
             </div>
+
         </section>
     </main>
-    <script src="script.js"></script>
+    <script src="js/data.js"></script>
+    <script src="js/script.js"></script>
 </body>
 </html>

@@ -1,3 +1,7 @@
+body{
+    background-color: rgb(255, 183, 131);
+}
+
 header{
     background-color: rgb(109, 54, 16);
     display: flex;
@@ -17,14 +21,16 @@ main{
     flex-direction: column;
     justify-content: center;
     align-items: center;
-
+    background-color: rgb(207, 167, 107);
     border: 2px solid black;
     width: 200px;
+    max-height: 300px;
     gap: 10px;
 }
 
 #agregar-libro > input{
     width: 100%;
+    
 }
 
 #filtrar{
@@ -32,13 +38,30 @@ main{
     flex-direction: column;
     justify-content: center;
     align-items: center;
-
     border: 2px solid black;
     width: 200px;
 }
 
 #catalogo{
-    display: grid;
+    display: flex;
+    flex-direction: column;
     justify-content: center;
-    border: 2px solid black; 
+    align-items: center;
+    color: rgb(59, 59, 54);
+    border: 1px solid black; 
+    background-color: rgb(207, 167, 107);
+}
+
+#lista-libros{
+    display: grid;
+    grid-template-columns: 200px 200px;
+    gap: 40px;
+
+}
+
+#tarjeta-libro{
+    color: black;
+    border: 2px solid black;
+    background-color: blanchedalmond;
+    padding-left: 30px;
 }
