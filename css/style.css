@@ -1,0 +1,44 @@
+header{
+    background-color: rgb(109, 54, 16);
+    display: flex;
+    justify-content: center;
+}
+
+main{
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 50px;
+
+    background-color: rgb(255, 183, 131);
+}
+
+#agregar-libro{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    border: 2px solid black;
+    width: 200px;
+    gap: 10px;
+}
+
+#agregar-libro > input{
+    width: 100%;
+}
+
+#filtrar{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    border: 2px solid black;
+    width: 200px;
+}
+
+#catalogo{
+    display: grid;
+    justify-content: center;
+    border: 2px solid black; 
+}
