@@ -59,9 +59,13 @@ main{
 
 }
 
-#tarjeta-libro{
+.tarjeta-libro{
     color: black;
     border: 2px solid black;
     background-color: blanchedalmond;
     padding-left: 30px;
+}
+
+.fav {
+    background-color: rgb(139, 87, 50);
 }
